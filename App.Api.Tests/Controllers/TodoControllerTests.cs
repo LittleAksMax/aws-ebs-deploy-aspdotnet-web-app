@@ -10,7 +10,7 @@ namespace App.Api.Tests.Controllers;
 public sealed class TodoControllerTests
 {
     [Fact]
-    public async Task GetAll_OnSuccess_ShouldReturnOkObjectResult()
+    public async Task GetAll_OnSuccess_ShouldReturnOkObjectResult_WithTestData()
     {
         // Arrange
         var serviceMock = new Mock<ITodoService>();

@@ -6,7 +6,8 @@ namespace App.Domain.Models;
 [Index(nameof(Title), IsUnique = true)] // add UNIQUE constraint to Title property
 public sealed class Todo
 {
-    public required Guid TodoId { get; init; }
+    // TodoId not required since it can't necessarily be instantiated
+    public Guid TodoId { get; init; }
     [Column(TypeName = "VARCHAR(100)")]
     public required string Title { get; init; }
     [Column(TypeName = "VARCHAR(500)")]
