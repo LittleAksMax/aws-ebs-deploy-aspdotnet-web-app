@@ -3,13 +3,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Api.Installers;
 
-public class DataAccessInstaller : IInstaller
+public sealed class DataAccessInstaller : IInstaller
 {
     public void InstallServices(WebApplicationBuilder builder)
     {
+        var connectionString = builder.Configuration["SqlServer:ConnectionString"];
         builder.Services.AddDbContext<AppDbContext>(options =>
         {
-            options.UseSqlServer();
+            options.UseNpgsql(connectionString);
         });
     }
 }

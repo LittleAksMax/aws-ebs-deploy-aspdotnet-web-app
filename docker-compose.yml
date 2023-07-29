@@ -1,18 +1,18 @@
 version: '3.8'
 
 services:
-  app-sql-server-db:
-    container_name: app-sql-server-db
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    ports:
-    - "1433:1433"
+  postgres-db:
+    image: postgres:13-alpine
+    container_name: postgres
     environment:
-      - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=${SQL_SERVER_PASSWORD}
-      - MSSQL_PID=${SQL_SERVER_PID}
+      - POSTGRES_DATABASE=${POSTGRES_DATABASE}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
     volumes:
-      - app_sqldata:/var/opt/mssql
+    - postgres-todo-data:/data/db
+    restart: on-failure
 
 volumes:
-  app_sqldata: {}
-  
+  postgres-todo-data: {}

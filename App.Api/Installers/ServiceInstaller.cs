@@ -1,6 +1,6 @@
 ﻿namespace App.Api.Installers;
 
-public class ServiceInstaller : IInstaller
+public sealed class ServiceInstaller : IInstaller
 {
     public void InstallServices(WebApplicationBuilder builder)
     {
