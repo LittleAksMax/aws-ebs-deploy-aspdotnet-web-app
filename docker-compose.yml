@@ -11,7 +11,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-    - postgres-todo-data:/data/db
+    - postgres-todo-data:/var/lib/postgresql/data
     restart: on-failure
 
 volumes:
