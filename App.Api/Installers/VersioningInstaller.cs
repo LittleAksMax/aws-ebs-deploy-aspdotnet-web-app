@@ -4,6 +4,7 @@ internal sealed class VersioningInstaller : InstallerSingleton<VersioningInstall
 {
     public void InstallServices(WebApplicationBuilder builder)
     {
+        builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddApiVersioning();
         builder.Services.AddVersionedApiExplorer(options =>
         {

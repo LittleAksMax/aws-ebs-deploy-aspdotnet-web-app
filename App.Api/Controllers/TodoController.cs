@@ -1,24 +1,25 @@
-﻿using App.DataAccess;
-using App.Domain;
+﻿using App.Domain;
+using App.Domain.Dtos;
+using App.Infrastructure.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace App.Api.Controllers;
 
 [ApiController]
 public sealed class TodoController : ControllerBase
 {
-    private readonly AppDbContext _context;
+    private readonly ITodoService _service;
 
-    public TodoController(AppDbContext context)
+    public TodoController(ITodoService todoService)
     {
-        _context = context;
+        _service = todoService;
     }
     
     [HttpGet(ApiRoutes.TodoRoutes.GetAllRoute)]
     [ApiVersion("1.0")]
     public async Task<IActionResult> GetAll()
     {
-        return Ok(await _context.Todos.ToListAsync());
+        List<TodoDto> todoDtos = await _service.GetAllTodos();
+        return Ok(todoDtos);
     }
 }

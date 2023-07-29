@@ -6,6 +6,7 @@ internal sealed class OmniInstaller : InstallerSingleton<OmniInstaller>, IInstal
     {
         DataAccessInstaller.Get().InstallServices(builder);
         VersioningInstaller.Get().InstallServices(builder);
-        // ServiceInstaller.Get().InstallServices(builder); // this would throw exception before being implemented
+        ServiceInstaller.Get().InstallServices(builder); // this would throw exception before being implemented
+        ControllerInstaller.Get().InstallServices(builder);
     }
 }
