@@ -1,4 +1,5 @@
 ﻿using App.DataAccess;
+using App.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,8 +15,9 @@ public sealed class TodoController : ControllerBase
         _context = context;
     }
     
-    [HttpGet]
-    public async Task<IActionResult> Test()
+    [HttpGet(ApiRoutes.TodoRoutes.GetAllRoute)]
+    [ApiVersion("1.0")]
+    public async Task<IActionResult> GetAll()
     {
         return Ok(await _context.Todos.ToListAsync());
     }

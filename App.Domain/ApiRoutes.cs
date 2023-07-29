@@ -2,7 +2,8 @@
 
 public static class ApiRoutes
 {
-    private const string Base = "/api";
+    // the versioning parameter is treated in the .Api layer
+    private const string Base = "/api/v{version:apiVersion}";
 
     public static class TodoRoutes
     {

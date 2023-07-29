@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Api.Installers;
 
-public sealed class DataAccessInstaller : IInstaller
+internal sealed class DataAccessInstaller : InstallerSingleton<DataAccessInstaller>, IInstaller
 {
     public void InstallServices(WebApplicationBuilder builder)
     {
