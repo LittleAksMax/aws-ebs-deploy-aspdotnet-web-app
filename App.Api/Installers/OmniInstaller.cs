@@ -1,8 +1,8 @@
 ﻿namespace App.Api.Installers;
 
-internal sealed class OmniInstaller : InstallerSingleton<OmniInstaller>, IInstaller
+internal sealed class OmniInstaller : InstallerSingleton<OmniInstaller>
 {
-    public void InstallServices(WebApplicationBuilder builder)
+    public override void InstallServices(WebApplicationBuilder builder)
     {
         DataAccessInstaller.Get().InstallServices(builder);
         VersioningInstaller.Get().InstallServices(builder);

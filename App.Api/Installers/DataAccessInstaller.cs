@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Api.Installers;
 
-internal sealed class DataAccessInstaller : InstallerSingleton<DataAccessInstaller>, IInstaller
+internal sealed class DataAccessInstaller : InstallerSingleton<DataAccessInstaller>
 {
-    public void InstallServices(WebApplicationBuilder builder)
+    public override void InstallServices(WebApplicationBuilder builder)
     {
         var connectionString = builder.Configuration["SqlServer:ConnectionString"];
         builder.Services.AddDbContext<AppDbContext>(options =>

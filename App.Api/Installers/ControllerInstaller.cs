@@ -1,8 +1,8 @@
 ﻿namespace App.Api.Installers;
 
-internal sealed class ControllerInstaller : InstallerSingleton<ControllerInstaller>, IInstaller
+internal sealed class ControllerInstaller : InstallerSingleton<ControllerInstaller>
 {
-    public void InstallServices(WebApplicationBuilder builder)
+    public override void InstallServices(WebApplicationBuilder builder)
     {
         builder.Services.AddControllers();
     }

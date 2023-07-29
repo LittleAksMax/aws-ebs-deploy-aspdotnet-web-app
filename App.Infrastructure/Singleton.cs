@@ -1,5 +1,13 @@
 ﻿namespace App.Infrastructure;
 
+/// <summary>
+/// A basic singleton implementation for the service registration
+/// in the API layer.
+/// </summary>
+/// <typeparam name="T">
+/// Any instantiable class that is to be the
+/// singleton.
+/// </typeparam>
 public class Singleton<T> where T : new()
 {
     private static T? _instance; // defaults to null

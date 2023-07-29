@@ -1,8 +1,8 @@
 ﻿namespace App.Api.Installers;
 
-internal sealed class VersioningInstaller : InstallerSingleton<VersioningInstaller>, IInstaller
+internal sealed class VersioningInstaller : InstallerSingleton<VersioningInstaller>
 {
-    public void InstallServices(WebApplicationBuilder builder)
+    public override void InstallServices(WebApplicationBuilder builder)
     {
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddApiVersioning();

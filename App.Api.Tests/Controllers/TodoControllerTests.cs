@@ -7,7 +7,7 @@ using Moq;
 
 namespace App.Api.Tests.Controllers;
 
-public class TodoControllerTests
+public sealed class TodoControllerTests
 {
     [Fact]
     public async Task GetAll_OnSuccess_ShouldReturnOkObjectResult()

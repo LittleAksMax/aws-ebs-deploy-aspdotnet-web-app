@@ -7,7 +7,8 @@ namespace App.Api.Installers;
 /// to register them as singletons through DI.
 /// </summary>
 /// <typeparam name="TInstaller">The type of the installer class that inherits from this class</typeparam>
-internal abstract class InstallerSingleton<TInstaller> : Singleton<TInstaller>
+internal abstract class InstallerSingleton<TInstaller> : Singleton<TInstaller>, IInstaller
     where TInstaller : IInstaller, new()
 {
+    public abstract void InstallServices(WebApplicationBuilder builder);
 }
