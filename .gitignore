@@ -1,12 +1,15 @@
+# My own
+.env*
+dist*
+# Stupid solution to not putting the actual connection string into version control
+App.Api/appsettings.Production.json
+
 *.swp
 *.*~
 project.lock.json
 .DS_Store
 *.pyc
 nupkg/
-
-# My own
-.env*
 
 # Visual Studio Code
 .vscode/
