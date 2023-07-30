@@ -1,9 +1,9 @@
+using App.Api.Installers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
+OmniInstaller.Get().InstallServices(builder);
 
 var app = builder.Build();
 
@@ -12,8 +12,6 @@ if (app.Environment.IsDevelopment())
 {
     
 }
-
-app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
