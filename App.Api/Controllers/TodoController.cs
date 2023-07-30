@@ -50,4 +50,12 @@ public sealed class TodoController : ControllerBase
                 resultDto)
             : Conflict();
     }
+
+    [HttpDelete(ApiRoutes.TodoRoutes.DeleteRoute)]
+    [ApiVersion("1.0")]
+    public async Task<IActionResult> Delete([FromRoute] Guid id)
+    {
+        var successfullyDeleted = await _service.Delete(id);
+        return successfullyDeleted ? NoContent() : NotFound();
+    }
 }
