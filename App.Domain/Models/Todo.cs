@@ -9,7 +9,7 @@ public sealed class Todo
     // TodoId not required since it can't necessarily be instantiated
     public Guid TodoId { get; init; }
     [Column(TypeName = "VARCHAR(100)")]
-    public required string Title { get; init; }
+    public required string Title { get; set; }
     [Column(TypeName = "VARCHAR(500)")]
-    public required string Description { get; init; }
+    public required string Description { get; set; }
 }

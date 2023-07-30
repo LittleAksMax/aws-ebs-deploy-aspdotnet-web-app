@@ -51,6 +51,28 @@ public sealed class TodoController : ControllerBase
             : Conflict();
     }
 
+    [HttpPut(ApiRoutes.TodoRoutes.UpdateRoute)]
+    [ApiVersion("1.0")]
+    public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateTodoRequest body)
+    {
+        var dtoToUpdate = new TodoDto
+        {
+            TodoId = id, Title = body.Title, Description = body.Description
+        };
+        var (resultDto, conflict) = await _service.Update(dtoToUpdate);
+        if (resultDto is not null)
+        {
+            return Ok();
+        }
+        
+        if (conflict)
+        {
+            return Conflict("Title must be unique.");
+        }
+        
+        return NotFound();
+    }
+
     [HttpDelete(ApiRoutes.TodoRoutes.DeleteRoute)]
     [ApiVersion("1.0")]
     public async Task<IActionResult> Delete([FromRoute] Guid id)

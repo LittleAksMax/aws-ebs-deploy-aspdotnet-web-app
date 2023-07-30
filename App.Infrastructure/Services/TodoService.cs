@@ -43,6 +43,31 @@ public sealed class TodoService : ServiceBase, ITodoService
         return todo.ToDto(); // should be completed by the .Add query
     }
 
+    /// <returns>
+    /// DTO object if successful, null if failed. Conflict is true if conflict occurred,
+    /// if it is false then object with GUID in DTO given was not found.
+    /// </returns>
+    public async Task<(TodoDto? Dto, bool Conflict)> Update(TodoDto dto)
+    {
+        var existingWithId = await FindById(dto.TodoId);
+        if (existingWithId is null)
+        {
+            return (null, false);
+        }
+
+        var existingWithTitle = await FindByTitle(dto.Title);
+        if (existingWithTitle is not null && existingWithTitle.TodoId != dto.TodoId)
+        {
+            return (null, true);
+        }
+
+        existingWithId.Title = dto.Title;
+        existingWithId.Description = dto.Description;
+        Context.Todos.Update(existingWithId);
+        await Context.SaveChangesAsync();
+        return (existingWithId.ToDto(), false);
+    }
+
     public async Task<bool> Delete(Guid id)
     {
         var existingWithId = await FindById(id);
@@ -61,6 +86,12 @@ public sealed class TodoService : ServiceBase, ITodoService
     private async Task<Todo?> FindById(Guid id)
     {
         return await Context.Todos.Where(x => x.TodoId == id)
+            .FirstOrDefaultAsync();
+    }
+
+    private async Task<Todo?> FindByTitle(string title)
+    {
+        return await Context.Todos.Where(x => x.Title == title)
             .FirstOrDefaultAsync();
     }
 }
